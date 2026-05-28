@@ -4,11 +4,6 @@ import { CountryPage } from "./pages/country-page/country-page";
 export const countryRoutes: Routes = [
   {
     path: '',
-    children: [
-      {
-        path: 'sign-up',
-        loadComponent: () => CountryPage,
-      },
-    ]
-  }
+    loadComponent: () => CountryPage,
+  },
 ];
