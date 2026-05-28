@@ -1,0 +1,14 @@
+import { Routes } from "@angular/router";
+import { CountryPage } from "./country-page/country-page";
+
+export const countryRoutes: Routes = [
+  {
+    path: '',
+    children: [
+      {
+        path: 'sign-up',
+        loadComponent: () => CountryPage,
+      },
+    ]
+  }
+];
