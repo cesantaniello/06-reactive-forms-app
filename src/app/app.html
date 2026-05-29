@@ -1,8 +1,16 @@
-<div class="row mt-5">
-  <div class="col">
-    <router-outlet />
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" [routerLink]="'/'">Reactive Forms App</a>
   </div>
-  <div class="col-12 col-sm-4">
-    <app-side-menu />
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-8 mb-4">
+      <router-outlet />
+    </div>
+    <div class="col-12 col-sm-4">
+      <app-side-menu />
+    </div>
   </div>
 </div>

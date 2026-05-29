@@ -1,32 +1,38 @@
-<h2>Páginas</h2>
-<hr/>
+<div class="card shadow-sm">
+  <div class="card-header bg-dark text-white">
+    <h5 class="mb-0">Navegación</h5>
+  </div>
+  <div class="card-body p-0">
 
-<h3>Reactive Forms</h3>
-<ul class="list-group">
-  @for (item of reactiveMenu; track item.title){
-    <li
-    [routerLink]="item.route"
-    routerLinkActive="active"
-    class="list-group-item">{{ item.title }}</li>
-  }
-</ul>
+    <h6 class="px-3 pt-3 text-muted text-uppercase small fw-bold">Reactive Forms</h6>
+    <ul class="list-group list-group-flush mb-2">
+      @for (item of reactiveMenu; track item.title) {
+        <li [routerLink]="item.route" routerLinkActive="active"
+            class="list-group-item list-group-item-action">
+          {{ item.title }}
+        </li>
+      }
+    </ul>
 
-<h3>Auth</h3>
-<ul class="list-group">
-  @for (item of authMenu; track item.title){
-    <li
-    [routerLink]="item.route"
-    routerLinkActive="active"
-    class="list-group-item">{{ item.title }}</li>
-  }
-</ul>
+    <h6 class="px-3 text-muted text-uppercase small fw-bold">Auth</h6>
+    <ul class="list-group list-group-flush mb-2">
+      @for (item of authMenu; track item.title) {
+        <li [routerLink]="item.route" routerLinkActive="active"
+            class="list-group-item list-group-item-action">
+          {{ item.title }}
+        </li>
+      }
+    </ul>
 
-<h3>Country</h3>
-<ul class="list-group">
-  @for (item of countryMenu; track item.title){
-    <li
-    [routerLink]="item.route"
-    routerLinkActive="active"
-    class="list-group-item">{{ item.title }}</li>
-  }
-</ul>
+    <h6 class="px-3 text-muted text-uppercase small fw-bold">Country</h6>
+    <ul class="list-group list-group-flush">
+      @for (item of countryMenu; track item.title) {
+        <li [routerLink]="item.route" routerLinkActive="active"
+            class="list-group-item list-group-item-action">
+          {{ item.title }}
+        </li>
+      }
+    </ul>
+
+  </div>
+</div>

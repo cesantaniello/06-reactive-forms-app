@@ -1,98 +1,72 @@
-<h2>Reactivos: Switches</h2>
-<hr>
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-warning text-dark">
+    <h5 class="mb-0">Formulario — Switches &amp; Radios</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
 
-
-<form autocomplete="off">
-
-    <!-- Radio -->
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Género</label>
+      <div class="row mb-3">
+        <label for="radioMasculino" class="col-sm-3 col-form-label fw-semibold">Género</label>
         <div class="col-sm-9">
-
-            <div class="form-check">
-                <input class="form-check-input"
-                       type="radio"
-                       value="M"
-                       id="radioMasculino">
-                <label class="form-check-label" for="radioMasculino">
-                  Masculino
-                </label>
-            </div>
-
-            <div class="form-check">
-                <input class="form-check-input"
-                       type="radio"
-                       value="F"
-                       id="radioFemenino">
-                <label class="form-check-label" for="radioFemenino">
-                  Femenino
-                </label>
-            </div>
-
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="genero"
+                   value="M" id="radioMasculino">
+            <label class="form-check-label" for="radioMasculino">Masculino</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="genero"
+                   value="F" id="radioFemenino">
+            <label class="form-check-label" for="radioFemenino">Femenino</label>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Switches -->
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Notificaciones</label>
+      <div class="row mb-3">
+        <label for="switchNotif" class="col-sm-3 col-form-label fw-semibold">Notificaciones</label>
         <div class="col-sm-9">
-
-            <div class="form-check form-switch mt-2">
-                <input class="form-check-input"
-                       type="checkbox"
-                       id="flexSwitchCheckChecked">
-                <label class="form-check-label" for="flexSwitchCheckChecked">Quiero recibir notificaciones</label>
-            </div>
-
+          <div class="form-check form-switch mt-2">
+            <input class="form-check-input" type="checkbox"
+                   formControlName="notificaciones" id="switchNotif">
+            <label class="form-check-label" for="switchNotif">
+              Quiero recibir notificaciones
+            </label>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- Switches -->
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label"></label>
+      <div class="row mb-3">
+        <div class="col-sm-3"></div>
         <div class="col-sm-9">
-            <div class="form-check">
-                <input class="form-check-input"
-                       type="checkbox"
-                       id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                  Términos y condiciones de uso
-                </label>
-              </div>
-              <span class="form-text text-danger">
-                 Debe de aceptar las condiciones de uso
-              </span>
-
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" formControlName="terminos"
+                   [class.is-invalid]="myForm.get('terminos')?.invalid && myForm.get('terminos')?.touched"
+                   id="checkTerminos">
+            <label class="form-check-label" for="checkTerminos">
+              Términos y condiciones de uso
+            </label>
+            <div class="invalid-feedback">Debe aceptar los términos y condiciones.</div>
+          </div>
         </div>
-    </div>
+      </div>
 
-
-    <!-- Boton submit -->
-    <div class="row">
-        <div class="col">
-            <button class="btn btn-primary float-end"
-                    type="submit">
-                Guardar
-            </button>
+      <div class="row">
+        <div class="col text-end">
+          <button class="btn btn-warning" type="submit">Guardar</button>
         </div>
-    </div>
+      </div>
 
-</form>
+    </form>
+  </div>
+</div>
 
-
-<h5>Valor del formulario</h5>
-<pre>{{ 'object' | json }}</pre>
-<br>
-
-<h5>Persona</h5>
-<pre>{{ 'object' | json }}</pre>
-<br>
-
-<h5>Valid</h5>
-<pre>{{ 'object' | json }}</pre>
-
-<!-- <h5>Términos</h5> -->
-<!-- <pre>{{ myForm.controls?.terminos?.errors | json }}</pre> -->
-
-<!-- <br>
-<pre>Condiciones: </pre> -->
+<div class="card shadow-sm bg-light">
+  <div class="card-header">
+    <h6 class="mb-0 text-muted">Estado del formulario</h6>
+  </div>
+  <div class="card-body small">
+    <div><span class="badge bg-success">Valid</span> {{ myForm.valid | json }}</div>
+    <hr class="my-2">
+    <span class="badge bg-dark">Value</span>
+    <pre class="mt-1 mb-0">{{ myForm.value | json }}</pre>
+  </div>
+</div>

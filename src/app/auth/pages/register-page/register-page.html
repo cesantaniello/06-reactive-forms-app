@@ -1,114 +1,96 @@
-<h2>Validaciones Reactivas</h2>
-<hr>
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-danger text-white">
+    <h5 class="mb-0">Validaciones Reactivas — Registro</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
 
-<div class="row">
-    <div class="col">
+      <div class="row mb-3">
+        <label for="nombre" class="col-sm-3 col-form-label fw-semibold">Nombre y apellido</label>
+        <div class="col-sm-9">
+          <input id="nombre" type="text" class="form-control" formControlName="nombre"
+                 [class.is-invalid]="isInvalid('nombre')"
+                 placeholder="Nombre del usuario">
+          <div class="invalid-feedback">
+            @if (myForm.get('nombre')?.errors?.['required']) { El nombre es requerido. }
+            @else { Formato: Nombre Apellido. }
+          </div>
+        </div>
+      </div>
 
-        <form autocomplete="off">
+      <div class="row mb-3">
+        <label for="email" class="col-sm-3 col-form-label fw-semibold">Email</label>
+        <div class="col-sm-9">
+          <input id="email" type="email" class="form-control" formControlName="email"
+                 [class.is-invalid]="isInvalid('email')"
+                 placeholder="Email del usuario">
+          <div class="invalid-feedback">
+            @if (myForm.get('email')?.errors?.['required']) { El email es requerido. }
+            @else { Email no válido. }
+          </div>
+        </div>
+      </div>
 
-            <!-- Nombre -->
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Nombre y apellido</label>
-                <div class="col-sm-9">
-                    <input type="text"
-                           class="form-control"
-                           placeholder="Nombre del usuario">
+      <div class="row mb-3">
+        <label for="username" class="col-sm-3 col-form-label fw-semibold">Username</label>
+        <div class="col-sm-9">
+          <input id="username" type="text" class="form-control" formControlName="username"
+                 [class.is-invalid]="isInvalid('username')"
+                 placeholder="Nombre código del usuario">
+          <div class="invalid-feedback">
+            @if (myForm.get('username')?.errors?.['required']) { El username es requerido. }
+            @else { El username no puede ser "Strider". }
+          </div>
+        </div>
+      </div>
 
-                    <span class="form-text text-danger">
-                        Debe de ser en formato de nombre y apellido
-                    </span>
-                </div>
-            </div>
+      <div class="row mb-3">
+        <label for="password" class="col-sm-3 col-form-label fw-semibold">Password</label>
+        <div class="col-sm-9">
+          <input id="password" type="password" class="form-control" formControlName="password"
+                 [class.is-invalid]="isInvalid('password')"
+                 placeholder="Contraseña">
+          <div class="invalid-feedback">
+            @if (myForm.get('password')?.errors?.['required']) { La contraseña es requerida. }
+            @else { Mínimo 6 caracteres. }
+          </div>
+        </div>
+      </div>
 
-            <!-- Email -->
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Email</label>
-                <div class="col-sm-9">
-                    <input type="email"
-                           class="form-control"
-                           placeholder="Email del usuario">
-                    <span class="form-text text-danger">
-                        mensaje de error del email
-                    </span>
-                </div>
-            </div>
+      <div class="row mb-3">
+        <label for="password2" class="col-sm-3 col-form-label fw-semibold">Confirmar</label>
+        <div class="col-sm-9">
+          <input id="password2" type="password" class="form-control" formControlName="password2"
+                 [class.is-invalid]="isInvalid('password2') || (!!myForm.errors?.['passwordsMatch'] && myForm.get('password2')?.touched)"
+                 placeholder="Confirmar contraseña">
+          <div class="invalid-feedback">Las contraseñas deben ser iguales.</div>
+        </div>
+      </div>
 
-            <!-- Username -->
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Username</label>
-                <div class="col-sm-9">
-                    <input type="text"
-                           class="form-control"
-                           placeholder="Nombre código del usuario">
-                    <span class="form-text text-danger">
-                         El username no puede ser Strider
-                    </span>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col d-flex justify-content-end gap-2">
+          <button type="button" class="btn btn-outline-secondary" (click)="myForm.reset()">Limpiar</button>
+          <button type="submit" class="btn btn-danger">Crear cuenta</button>
+        </div>
+      </div>
 
-            <!-- Password -->
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Password</label>
-                <div class="col-sm-9">
-                    <input type="password"
-                           class="form-control"
-                           placeholder="Password de su cuenta">
-
-                    <span class="form-text text-danger">
-                         La contraseña debe de ser mayor de 6 caracteres.
-                    </span>
-                </div>
-            </div>
-
-            <!-- Password2 -->
-            <div class="row mb-3">
-                <label class="col-sm-3 col-form-label">Confirmar</label>
-                <div class="col-sm-9">
-                    <input type="password"
-                           class="form-control"
-                           placeholder="Confirmar la contraseña">
-
-                    <span class="form-text text-danger">
-                         Las contraseñas deben de ser iguales
-                    </span>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-primary float-end"
-                            type="submit">
-                        Crear
-                    </button>
-                </div>
-            </div>
-
-
-        </form>
-    </div>
+    </form>
+  </div>
 </div>
 
-
-<h2>Form Valid: </h2>
-<h2>Form Status: </h2>
-<h2>Form Pending: </h2>
-<h2>Form errors</h2>
-<pre>{{ 'formulario' | json }}</pre>
-
-<h5>Nombre</h5>
-<pre>{{ 'formulario' | json }}</pre>
-
-<h5>Email</h5>
-<pre>{{ 'formulario' | json }}</pre>
-
-<h5>Username</h5>
-<pre>{{ 'formulario' | json }}</pre>
-
-
-<h5>Password</h5>
-<pre>{{ 'formulario' | json }}</pre>
-
-<h5>Confirmar</h5>
-<pre>{{ 'formulario' | json }}</pre>
-
+<div class="card shadow-sm bg-light">
+  <div class="card-header">
+    <h6 class="mb-0 text-muted">Estado del formulario</h6>
+  </div>
+  <div class="card-body small">
+    <div class="row g-1">
+      <div class="col-sm-4"><span class="badge bg-success">Valid</span> {{ myForm.valid | json }}</div>
+      <div class="col-sm-4"><span class="badge bg-info">Status</span> {{ myForm.status }}</div>
+    </div>
+    <div class="mt-1"><span class="badge bg-danger">Errors del grupo</span></div>
+    <pre class="mt-1 mb-0">{{ myForm.errors | json }}</pre>
+    <hr class="my-2">
+    <span class="badge bg-dark">Value</span>
+    <pre class="mt-1 mb-0">{{ myForm.value | json }}</pre>
+  </div>
+</div>

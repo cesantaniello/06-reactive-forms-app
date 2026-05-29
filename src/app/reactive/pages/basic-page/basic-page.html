@@ -1,94 +1,67 @@
-<h2>Reactivos: Básicos</h2>
-<hr>
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">Formulario Básico — Producto</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
 
-<div class="row">
-    <div class="col">
+      <div class="mb-3 row">
+        <label for="producto" class="col-sm-3 col-form-label fw-semibold">Producto</label>
+        <div class="col-sm-9">
+          <input id="producto" type="text" class="form-control" formControlName="producto"
+                 [class.is-invalid]="isInvalid('producto')"
+                 placeholder="Nombre del producto">
+          <div class="invalid-feedback">
+            @if (myForm.get('producto')?.errors?.['required']) { El nombre es requerido. }
+            @else { Mínimo 3 caracteres. }
+          </div>
+        </div>
+      </div>
 
-        <form autocomplete="off">
+      <div class="mb-3 row">
+        <label for="precio" class="col-sm-3 col-form-label fw-semibold">Precio</label>
+        <div class="col-sm-9">
+          <input id="precio" type="number" class="form-control" formControlName="precio"
+                 [class.is-invalid]="isInvalid('precio')"
+                 placeholder="Precio del producto">
+          <div class="invalid-feedback">El precio debe ser 0 o mayor.</div>
+        </div>
+      </div>
 
-            <!-- Campo de producto -->
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Producto</label>
-                <div class="col-sm-9">
+      <div class="mb-3 row">
+        <label for="existencias" class="col-sm-3 col-form-label fw-semibold">Existencias</label>
+        <div class="col-sm-9">
+          <input id="existencias" type="number" class="form-control" formControlName="existencias"
+                 [class.is-invalid]="isInvalid('existencias')"
+                 placeholder="Existencias del producto">
+          <div class="invalid-feedback">Las existencias deben ser 0 o mayor.</div>
+        </div>
+      </div>
 
-                    <input type="text"
-                           class="form-control"
-                           placeholder="Nombre del producto">
+      <div class="row">
+        <div class="col d-flex justify-content-end gap-2">
+          <button type="button" class="btn btn-outline-secondary"
+                  (click)="myForm.reset({precio:0, existencias:0})">Limpiar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
 
-                    <span class="form-text text-danger">
-                        <!-- Debe de ser de 3 letras -->
-                        error message
-                    </span>
-                </div>
-            </div>
-
-            <!-- Campo de producto -->
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Precio</label>
-                <div class="col-sm-9">
-                    <input type="number"
-                           class="form-control"
-                           placeholder="Precio del producto">
-                    <span class="form-text text-danger">
-                        El precio debe de ser 0 o mayor
-                    </span>
-                </div>
-            </div>
-
-            <!-- Campo de existencias -->
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Existencias</label>
-                <div class="col-sm-9">
-                    <input type="number"
-                           class="form-control"
-                           placeholder="Existencias del producto">
-
-                    <span class="form-text text-danger">
-                         Las existencias deben de ser 0 o mayor
-                    </span>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col">
-                    <button type="submit"
-                            class="btn btn-primary float-end">
-                        Guardar
-                    </button>
-                </div>
-            </div>
-
-
-
-        </form>
-
-    </div>
+    </form>
+  </div>
 </div>
 
-
-
-
-<div class="row">
-    <div class="col">
-
-        <span>Valid</span>
-        <pre>{{ 'objeto' | json }}</pre>
-
-        <span>Pristine</span>
-        <pre>{{ 'objeto' | json }}</pre>
-
-        <span>Touched</span>
-        <pre>{{ 'objeto' | json }}</pre>
-
-        <span>Value</span>
-        <pre>{{ 'objeto' | json }}</pre>
-
-        <span>Precio</span>
-        <pre>{{ 'objeto' | json }}</pre>
-
-        <span>Producto</span>
-        <pre>{{ 'objeto' | json }}</pre>
+<div class="card shadow-sm bg-light">
+  <div class="card-header">
+    <h6 class="mb-0 text-muted">Estado del formulario</h6>
+  </div>
+  <div class="card-body small">
+    <div class="row g-2">
+      <div class="col-sm-4"><span class="badge bg-success">Valid</span> {{ myForm.valid | json }}</div>
+      <div class="col-sm-4"><span class="badge bg-secondary">Pristine</span> {{ myForm.pristine | json }}</div>
+      <div class="col-sm-4"><span class="badge bg-warning text-dark">Touched</span> {{ myForm.touched | json }}</div>
     </div>
+    <hr class="my-2">
+    <span class="badge bg-dark">Value</span>
+    <pre class="mt-1 mb-0">{{ myForm.value | json }}</pre>
+  </div>
 </div>
-
